@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документ</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</head>
+<body>
+    <section class="container">
+        <div class="content">
+            <div class="dots">
+                <img class="dot bright active" src="img/dots/1.png" data-dot="0" alt="Карта">
+                <img class="dot" src="img/dots/2.png" alt="Карта">
+                <img class="dot" src="img/dots/3.png" alt="Карта">
+                <img class="dot" src="img/dots/4.png" alt="Карта">
+                <img class="dot" src="img/dots/5.png" alt="Карта">
+            </div>
+            <img class="map" src="img/map2.png" alt="Карта">
+            <img class="player" src="img/player.png" alt="Карта">
+            <div class="menu">
+                <div class="community__back">
+                    <div class="community__container">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img class="avatar" src="img/avatar.png" alt="Карта">
+                                    <img class="plus" src="img/plus.png" alt="Карта">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="avatar" src="img/avatar.png" alt="Карта">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="avatar" src="img/avatar.png" alt="Карта">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="avatar" src="img/avatar.png" alt="Карта">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="avatar" src="img/avatar.png" alt="Карта">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="avatar" src="img/avatar.png" alt="Карта">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="avatar" src="img/empty.png" alt="Карта">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="avatar" src="img/empty.png" alt="Карта">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="avatar" src="img/empty.png" alt="Карта">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="avatar" src="img/empty.png" alt="Карта">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-button-prev"><img src="/img/arrow.png" alt=""></div>
+                    <div class="swiper-button-next"><img src="/img/arrow.png" alt=""></div>
+                </div>
+                <div class="chat">
+                    <img src="img/chat.png" alt="чат">
+                </div>
+                <button class="college">
+                    <img src="img/college.png" alt="">
+                </button>
+                <div class="email">
+                    <img src="img/email.png" alt="чат">
+                </div>
+                <div class="rate">
+                    <img src="img/rate.png" alt="чат">
+                </div>
+            </div>
+
+            <div class="modal__rating">
+                <img src="img/rait__modal.png"  alt="">
+                <img class="close" src="img/close.png" onclick="closeRating()" alt="">
+                <div class="rating__list">
+    
+                </div>
+            </div>
+            <div class="overlay" onclick="closeRating()"></div>
+        </div>
+    </section>
+
+    <script>
+        // анимация движения персонажа
+        const college = document.querySelector('.college');
+        const player = document.querySelector('.player');
+        let currentPoint = 1;
+    
+        // массив точек с координатами
+        const points = [
+          {x: 422, y: 480},
+          {x: 335, y: 458},
+          {x: 255, y: 503},
+          {x: 170, y: 521},
+          {x: 105, y: 500}
+        ];
+    
+        // функция для перемещения игрока между точками
+        function movePlayer() {
+            if (currentPoint < points.length) {
+                const point = points[currentPoint];
+                
+                player.style.left = `${point.x}px`;
+                player.style.top = `${point.y - 50}px`;
+            }
+        }
+    
+        // обработчик кликов на точки
+        college.addEventListener('click', () => {
+            if (points.length > currentPoint) {
+                movePlayer();
+                currentPoint++
+            }
+        });
+
+        // слайдер
+        const swiper = new Swiper('.swiper-container', {
+            slidesPerView: '8',
+            spaceBetween: 0,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+        const openRating = document.querySelector('.rate');
+        const modalRating = document.querySelector('.modal__rating');
+        const overlay = document.querySelector('.overlay');
+
+        // открытие рейтинга
+        openRating.addEventListener('click', () => {
+            modalRating.classList.add('active');
+            overlay.classList.add('active');
+        })
+
+        // закрытие рейтинга
+        const closeRating = () => {
+            modalRating.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+    </script>
+
+    <script src="data.js"></script>
+
+    <script>
+        // рейтинг
+        const ratingList = document.querySelector('.rating__list')
+
+        // создаем массив ID друзей
+        const friendsIds = new Set(data.friends.map(friend => friend.id));
+        
+        data.rating.forEach((person, index) => {
+            const personInfo = document.createElement('div')
+            personInfo.classList.add(`rating__person__block`)
+
+            if (friendsIds.has(person.id)) {
+                personInfo.classList.add('friend')
+            }
+
+            // создаём элементы
+            const indexSpan = document.createElement('span')
+            indexSpan.textContent = `${index + 1}`
+
+            const personAvatar = document.createElement('img')
+            personAvatar.src = `img/avatar_mini.png`
+
+            const personName = document.createElement('span')
+            personName.textContent = `${person.name + ' ' + person.lastName}`
+            
+            const personRating = document.createElement('span')
+            personRating.textContent = `${person.points}`
+
+            // добавляем все в personInfo
+            personInfo.append(indexSpan, personAvatar, personName, personRating);
+
+            // добавляем personInfo в fragment
+            ratingList.appendChild(personInfo)
+        });
+    </script>
+</body>
+</html>

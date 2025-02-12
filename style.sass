@@ -1,0 +1,260 @@
+$white: #FFFFFF
+$black: #FFFFFF
+    
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+body
+    font-family: Arial, sans-serif
+    height: 100vh
+    overflow: hidden
+    background: $black
+
+.container
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 100vh
+
+.content
+    position: relative
+    width: 980px
+    height: 630px
+    overflow: hidden
+    user-select: none
+
+
+    .map
+        margin: auto
+        width: auto
+        object-fit: contain
+
+    .dot
+        position: absolute
+        cursor: pointer
+        padding: 10px
+        display: flex
+        justify-content: center
+        align-items: center
+
+        &:hover
+            filter: invert(1)
+            transition: .3s
+
+            &.bright
+                filter: brightness(2)
+
+                &:active
+                    filter: drop-shadow(2px 1px 2px black)
+
+        &:active
+            filter: drop-shadow(2px 1px 2px black)
+
+        &:nth-of-type(1)
+            left: 415px
+            top: 480px
+
+        &:nth-of-type(2)
+            left: 335px
+            top: 458px
+
+        &:nth-of-type(3)
+            left: 255px
+            top: 503px
+
+        &:nth-of-type(4)
+            left: 170px
+            top: 521px
+
+        &:nth-of-type(5)
+            left: 105px
+            top: 500px
+
+    .player
+        position: absolute
+        top: 435px
+        left: 422px
+        transition: .5s
+        padding: 0 10px
+
+.menu
+    position: absolute
+    top: 549px
+    left: 5px
+    display: flex
+    
+    & > *
+        margin: auto 0
+        cursor: pointer
+        display: flex
+
+        &:hover
+            filter: brightness(1.2)
+
+        &:active
+            filter: drop-shadow(2px 1px 2px $black)
+
+    .community__back
+        background-image: url(img/community.png)
+        padding: 0 30px
+        width: 536px
+        height: 63px
+        position: relative
+
+        &:hover
+            filter: none
+
+    .community__container
+        position: relative
+        margin-right: 2px
+        cursor: default
+        overflow: hidden
+        display: flex
+        align-items: center
+
+        .swiper-container
+            width: 100%
+            display: flex
+
+            .swiper-slide
+                display: flex
+                align-items: center
+                justify-content: center
+                position: relative
+                cursor: pointer
+
+                .plus
+                    position: absolute
+                    top: -10px
+                    right: 0
+
+                    &:hover
+                        transition: .3s
+                        transform: scale(1.05)
+
+                &:hover
+                    .avatar
+                        filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.8))
+                        transition: .3s
+
+    .college
+        width: 206px
+        height: 67px
+        background: none
+        border: none
+        cursor: pointer
+        transition: .3s
+        margin: 0 5px
+
+    .email
+        margin-right: 5px
+
+.swiper-button-next
+    right: 5px !important
+
+    &:hover
+        filter: brightness(30%) 
+        transition: .3s
+
+    &::after
+        display: none
+
+.swiper-button-prev
+    transform: rotate(180deg)
+    left: 5px !important
+    
+    &:hover
+        filter: brightness(30%)
+        transition: .3s
+
+    &::after
+        display: none
+
+.overlay
+    opacity: 0
+    position: absolute
+    background: #000
+    width: 100%
+    height: 100%
+    z-index: 50
+    top: 0
+    left: 0
+    -webkit-transition: opacity 0.5s ease
+    -o-transition: opacity 0.5s ease
+    transition: opacity 0.5s ease
+    pointer-events: none
+
+    &.active
+        opacity: .52
+        pointer-events: all
+
+.modal__rating
+    position: absolute
+    opacity: 0
+    top: -100%
+    left: 50%
+    transform: translate(-50%, -50%)
+    pointer-events: none
+    transition: .7s
+    z-index: 100
+
+    &.active
+        opacity: 1
+        top: 50%
+        pointer-events: all
+
+    .rating__list
+        position: absolute
+        top: 175px
+        left: 60px
+        color: $white
+        display: flex
+        flex-direction: column
+        gap: 5px
+        height: 220px
+        overflow-y: hidden
+        transition: .3s
+
+        &:hover
+            overflow-y: auto
+
+        .rating__person__block
+            background-image: url(img/person__block.png)
+            width: 403px
+            height: 27px
+            display: flex
+            align-items: center
+            text-align: center
+            font-weight: 700
+
+            &.friend
+                color: #FFFF00
+            
+            :nth-child(1)
+                width: 15%
+                margin-left: 6px
+
+            :nth-child(2)
+                width: auto
+
+            :nth-child(3)
+                text-align: start
+                margin-left: 3px
+                width: 50%
+
+            :nth-child(4)
+                width: 22%
+
+.close
+    position: absolute
+    top: 25px
+    right: 15px
+    cursor: pointer
+
+    &:hover
+        filter: brightness(1.2)
+
+    &:active
+        filter: drop-shadow(1px 1px 1px $black)
