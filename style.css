@@ -73,10 +73,40 @@ body {
 }
 .content .player {
   position: absolute;
-  top: 435px;
   left: 422px;
-  transition: 0.5s;
+  top: 435px;
   padding: 0 10px;
+  pointer-events: none;
+}
+.content .first__course {
+  position: absolute;
+  left: 430px;
+  top: 500px;
+  pointer-events: none;
+  animation: courseBrightness 1.5s ease-in-out infinite;
+}
+.content .first__course.deactivated {
+  animation: none;
+}
+@keyframes courseBrightness {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.3);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+.content .flower {
+  position: absolute;
+  left: 355px;
+  top: 480px;
+}
+.content .flower:hover {
+  filter: brightness(1.2);
+  cursor: pointer;
 }
 
 .menu {

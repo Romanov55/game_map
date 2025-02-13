@@ -17,14 +17,16 @@
     <section class="container">
         <div class="content">
             <div class="dots">
-                <img class="dot bright active" src="img/dots/1.png" data-dot="0" alt="Карта">
-                <img class="dot" src="img/dots/2.png" alt="Карта">
-                <img class="dot" src="img/dots/3.png" alt="Карта">
-                <img class="dot" src="img/dots/4.png" alt="Карта">
-                <img class="dot" src="img/dots/5.png" alt="Карта">
+                <img class="dot bright active" src="img/dots/1.png" data-dot="0" alt="точка 1">
+                <img class="dot" src="img/dots/2.png" alt="точка 2">
+                <img class="dot" src="img/dots/3.png" alt="точка 3">
+                <img class="dot" src="img/dots/4.png" alt="точка 4">
+                <img class="dot" src="img/dots/5.png" alt="точка 5">
             </div>
-            <img class="map" src="img/map2.png" alt="Карта">
-            <img class="player" src="img/player.png" alt="Карта">
+            <img class="map" src="img/map.png" alt="Карта">
+            <img class="player" src="img/player.png" alt="Игрок">
+            <img class="first__course" src="img/first_course.png" alt="курс">
+            <img class="flower" src="img/flower.png" alt="цветок">
             <div class="menu">
                 <div class="community__back">
                     <div class="community__container">
@@ -92,102 +94,7 @@
         </div>
     </section>
 
-    <script>
-        // анимация движения персонажа
-        const college = document.querySelector('.college');
-        const player = document.querySelector('.player');
-        let currentPoint = 1;
-    
-        // массив точек с координатами
-        const points = [
-          {x: 422, y: 480},
-          {x: 335, y: 458},
-          {x: 255, y: 503},
-          {x: 170, y: 521},
-          {x: 105, y: 500}
-        ];
-    
-        // функция для перемещения игрока между точками
-        function movePlayer() {
-            if (currentPoint < points.length) {
-                const point = points[currentPoint];
-                
-                player.style.left = `${point.x}px`;
-                player.style.top = `${point.y - 50}px`;
-            }
-        }
-    
-        // обработчик кликов на точки
-        college.addEventListener('click', () => {
-            if (points.length > currentPoint) {
-                movePlayer();
-                currentPoint++
-            }
-        });
-
-        // слайдер
-        const swiper = new Swiper('.swiper-container', {
-            slidesPerView: '8',
-            spaceBetween: 0,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-
-        const openRating = document.querySelector('.rate');
-        const modalRating = document.querySelector('.modal__rating');
-        const overlay = document.querySelector('.overlay');
-
-        // открытие рейтинга
-        openRating.addEventListener('click', () => {
-            modalRating.classList.add('active');
-            overlay.classList.add('active');
-        })
-
-        // закрытие рейтинга
-        const closeRating = () => {
-            modalRating.classList.remove('active');
-            overlay.classList.remove('active');
-        }
-    </script>
-
     <script src="data.js"></script>
-
-    <script>
-        // рейтинг
-        const ratingList = document.querySelector('.rating__list')
-
-        // создаем массив ID друзей
-        const friendsIds = new Set(data.friends.map(friend => friend.id));
-        
-        data.rating.forEach((person, index) => {
-            const personInfo = document.createElement('div')
-            personInfo.classList.add(`rating__person__block`)
-
-            if (friendsIds.has(person.id)) {
-                personInfo.classList.add('friend')
-            }
-
-            // создаём элементы
-            const indexSpan = document.createElement('span')
-            indexSpan.textContent = `${index + 1}`
-
-            const personAvatar = document.createElement('img')
-            personAvatar.src = `img/avatar_mini.png`
-
-            const personName = document.createElement('span')
-            personName.textContent = `${person.name + ' ' + person.lastName}`
-            
-            const personRating = document.createElement('span')
-            personRating.textContent = `${person.points}`
-
-            // добавляем все в personInfo
-            personInfo.append(indexSpan, personAvatar, personName, personRating);
-
-            // добавляем personInfo в fragment
-            ratingList.appendChild(personInfo)
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
