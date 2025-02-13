@@ -24,6 +24,7 @@ body {
   height: 630px;
   overflow: hidden;
   user-select: none;
+  overflow-x: auto;
 }
 .content .map {
   margin: auto;
